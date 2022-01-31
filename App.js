@@ -6,16 +6,24 @@ export default function App() {
   const [score, setScore] = useState('0');
   const [message, setMessage] = useState('Guess a number between 1 - 100');
 
+  const [number, setNumber] = useState(Math.floor(Math.random() * 100) + 1)
+
   const buttonPressed= () => {
 
-    if (input < Math.floor(Math.random() * 100) + 1) {
+    if (input < number) {
         setMessage('Your guess ' + input + ' is too low.');
         setScore(parseInt(score) + 1);
-    } else if (input > Math.floor(Math.random() * 100) + 1) {
+        
+    } else if (input > number) {
         setMessage('Your guess ' + input + ' is too high.');
         setScore(parseInt(score) + 1);
+        
     } else {
        Alert.alert('You guessed the number in ' + score + ' guesses');
+       setNumber(Math.floor(Math.random() * 100) + 1);
+       setScore('0');
+       setInput('');
+       setMessage('Guess a number between 1 - 100');
   }
 };
 
